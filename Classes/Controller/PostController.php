@@ -10,6 +10,7 @@ use Acme\Blog\Domain\Repository\PostRepository;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Mvc\Controller\ActionController;
 use Acme\Blog\Domain\Model\Post;
+use Neos\Flow\Mvc\View\ViewInterface;
 
 class PostController extends ActionController
 {
@@ -36,13 +37,9 @@ class PostController extends ActionController
     }
 
     /**
-     * Index action
-     *
-     * @return string HTML code
+     * @return void
      */
     public function indexAction() {
-        $blog = $this->blogRepository->findActive();
-        $this->view->assign('blog', $blog);
     }
 
     /**
@@ -55,10 +52,11 @@ class PostController extends ActionController
     }
 
     /**
+     * Displays the "Create Post" form
+     *
      * @return void
      */
-    public function newAction()
-    {
+    public function newAction() {
     }
 
     /**
