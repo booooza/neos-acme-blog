@@ -63,11 +63,12 @@ class PostController extends ActionController
     }
 
     /**
-     * @param \Acme\Blog\Domain\Model\Post $newPost
+     * Creates a new post
+     *
+     * @param Post $newPost
      * @return void
      */
-    public function createAction(Post $newPost)
-    {
+    public function createAction(Post $newPost) {
         $this->postRepository->add($newPost);
         $this->addFlashMessage('Created a new post.');
         $this->redirect('index');
