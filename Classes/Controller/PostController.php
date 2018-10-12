@@ -72,11 +72,12 @@ class PostController extends ActionController
     }
 
     /**
-     * @param \Acme\Blog\Domain\Model\Post $post
+     * Displays the "Edit Post" form
+     *
+     * @param Post $post
      * @return void
      */
-    public function editAction(Post $post)
-    {
+    public function editAction(Post $post) {
         $this->view->assign('post', $post);
     }
 
