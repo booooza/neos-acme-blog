@@ -1,0 +1,47 @@
+# In order to activate those routes, add the following snippet to the main
+# Routes.yaml file of your distribution:
+#
+#-
+#  name: 'Blog'
+#  uriPattern: '<BlogSubroutes>'
+#  defaults:
+#    '@package': 'Acme.Blog'
+#    '@format':  'html'
+#  subRoutes:
+#    'BlogSubroutes':
+#      package: 'Acme.Blog'
+#                                                                        #
+# Routes configuration for the Blog package                              #
+#                                                                        #
+
+-
+  name: 'Map base url to action index of post'
+  uriPattern: ''
+  defaults:
+    '@controller': 'Post'
+    '@action':     'index'
+
+-
+  name: 'Post index'
+  uriPattern: 'posts'
+  defaults:
+    '@package':    'Acme.Blog'
+    '@controller': 'Post'
+    '@action':     'index'
+    '@format':     'html'
+  
+-
+  name: 'Post actions'
+  uriPattern: 'posts/{@action}'
+  defaults:
+    '@controller': 'Post'
+
+-
+  name: 'Single post actions'
+  uriPattern: 'posts/{post}/{@action}'
+  defaults:
+    '@controller':  'Post'
+  routeParts:
+    post:
+      objectType: 'Acme\Blog\Domain\Model\Post'
+      uriPattern: '{date:Y}/{date:m}/{date:d}/{subject}'
