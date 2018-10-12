@@ -5,6 +5,8 @@ namespace Acme\Blog\Controller;
  * This file is part of the Acme.Blog package.
  */
 
+use Acme\Blog\Domain\Repository\BlogRepository;
+use Acme\Blog\Domain\Repository\PostRepository;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Mvc\Controller\ActionController;
 use Acme\Blog\Domain\Model\Post;
@@ -14,16 +16,34 @@ class PostController extends ActionController
 
     /**
      * @Flow\Inject
-     * @var \Acme\Blog\Domain\Repository\PostRepository
+     * @var BlogRepository
+     */
+    protected $blogRepository;
+
+    /**
+     * @Flow\Inject
+     * @var PostRepository
      */
     protected $postRepository;
 
     /**
-     * @return void
+     * Index action
+     *
+     * @return string HTML code
      */
-    public function indexAction()
-    {
-        $this->view->assign('posts', $this->postRepository->findAll());
+    public function indexAction() {
+        $blog = $this->blogRepository->findActive();
+        $output = '
+                <h1>Posts of "' . $blog->getTitle() . '"</h1>
+                <ol>';
+
+        foreach ($blog->getPosts() as $post) {
+                $output .= '<li>' . $post->getSubject() . '</li>';
+        }
+
+        $output .= '</ol>';
+
+        return $output;
     }
 
     /**
