@@ -27,23 +27,22 @@ class PostController extends ActionController
     protected $postRepository;
 
     /**
+     * @param ViewInterface $view
+     * @return void
+     */
+    protected function initializeView(ViewInterface $view) {
+        $blog = $this->blogRepository->findActive();
+        $this->view->assign('blog', $blog);
+    }
+
+    /**
      * Index action
      *
      * @return string HTML code
      */
     public function indexAction() {
         $blog = $this->blogRepository->findActive();
-        $output = '
-                <h1>Posts of "' . $blog->getTitle() . '"</h1>
-                <ol>';
-
-        foreach ($blog->getPosts() as $post) {
-                $output .= '<li>' . $post->getSubject() . '</li>';
-        }
-
-        $output .= '</ol>';
-
-        return $output;
+        $this->view->assign('blog', $blog);
     }
 
     /**

@@ -1,18 +1,16 @@
 <f:layout name="Default" />
 
-<f:section name="Title">A list of posts</f:section>
-
-<f:section name="Content">
-    <f:if condition="{posts}">
+<f:section name="MainContent">
+    <f:if condition="{blog.posts}">
         <f:then>
             <ul>
-                <f:for each="{posts}" as="post">
-                    <li>
-                        <f:link.action action="show" arguments="{post: post}">{post.name}</f:link.action>
-                        <f:link.action action="edit" arguments="{post: post}">Edit</f:link.action>
-                        <f:form action="delete" arguments="{post: post}">
-                            <f:form.submit value="Delete" />
-                        </f:form>
+                <f:for each="{blog.posts}" as="post">
+                    <li class="post">
+                        <f:render partial="PostActions" arguments="{post: post}"/>
+                        <h2>
+                            <f:link.action action="show" arguments="{post: post}">{post.subject}</f:link.action>
+                        </h2>
+                        <f:render partial="PostMetaData" arguments="{post: post}"/>
                     </li>
                 </f:for>
             </ul>
@@ -21,5 +19,7 @@
             <p>No posts created yet.</p>
         </f:else>
     </f:if>
-    <p><f:link.action action="new">Create a new post</f:link.action></p>
+    <p>
+        <f:link.action action="new">Create a new post</f:link.action><
+    /p>
 </f:section>
