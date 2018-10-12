@@ -23,6 +23,7 @@ class Post {
 
         /**
          * @Flow\Validate(type="NotEmpty")
+         * @Flow\Validate(type="StringLength", options={ "minimum"=3, "maximum"=50 })
          * @var string
          */
         protected $subject;

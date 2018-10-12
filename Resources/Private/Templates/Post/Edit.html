@@ -2,6 +2,7 @@
 
 <f:section name="MainContent">
     <h2>Edit post "{post.subject}"</h2>
+    <f:render partial="FormErrors" arguments="{for: 'post'}" />
     <f:form action="update" object="{post}" objectName="post">
         <label for="post-author">Author</label>
         <f:form.textfield property="author" id="post-author" />

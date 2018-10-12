@@ -43,12 +43,18 @@ class PostController extends ActionController
     }
 
     /**
-     * @param \Acme\Blog\Domain\Model\Post $post
+     * Displays a single post
+     *
+     * @Flow\IgnoreValidation("$post")
+     * @param Post $post
      * @return void
      */
-    public function showAction(Post $post)
-    {
-        $this->view->assign('post', $post);
+    public function showAction(Post $post) {
+        $this->view->assignMultiple([
+            'post' => $post,
+            'nextPost' => $this->postRepository->findNext($post),
+            'previousPost' => $this->postRepository->findPrevious($post),
+        ]);
     }
 
     /**
