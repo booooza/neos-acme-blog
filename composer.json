@@ -3,7 +3,7 @@
     "type": "neos-package",
     "name": "acme/blog",
     "require": {
-        "neos/flow": "*"
+        "neos/flow": "^5.1.4"
     },
     "autoload": {
         "psr-4": {
