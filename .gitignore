@@ -1,1 +1,5 @@
 .DS_Store
+/Packages/Framework/
+/Packages/Libraries/
+/Packages/Application/
+/vendor
