@@ -1,7 +1,7 @@
 {
     "description": "",
     "type": "neos-package",
-    "name": "acme/blog",
+    "name": "booooza/neos-flow-acme-blog",
     "require": {
         "neos/flow": "^5.1.4"
     },
